@@ -53,7 +53,7 @@ function learn_h(string $value): string
 }
 
 /**
- * Web base path for subdirectory deploys (e.g. /learn/public).
+ * Web base path for subdirectory deploys (e.g. /learn or /learn/public).
  * Empty string when the app is served from the domain root.
  */
 function learn_web_base(): string
@@ -71,6 +71,19 @@ function learn_web_base(): string
     }
 
     $base = rtrim($dir, '/');
+
+    // When Apache rewrites /learn/* into public/*, SCRIPT_NAME may still
+    // include /public while the browser URL does not. Prefer the URL base.
+    $uriPath = parse_url((string) ($_SERVER['REQUEST_URI'] ?? ''), PHP_URL_PATH);
+    $uriPath = is_string($uriPath) ? str_replace('\\', '/', $uriPath) : '';
+    if (
+        str_ends_with($base, '/public')
+        && $uriPath !== ''
+        && !str_contains(rtrim($uriPath, '/'), '/public')
+    ) {
+        $base = substr($base, 0, -strlen('/public'));
+    }
+
     return $base;
 }
 
