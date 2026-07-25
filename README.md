@@ -17,9 +17,25 @@ php -S 127.0.0.1:8080 -t public public/router.php
 
 Open `http://127.0.0.1:8080`.
 
-## CLI
+## Agent Run (web)
 
-See `docs/AGENT_RETRIEVAL.md` for grounding queries and the full agent run loop.
+Token-gated page for Cursor / Claude Code to claim topics and save lessons without SSH:
+
+- UI: `/agent.php`
+- JSON: `/agent-api.php?action=status|next-topic|save-lesson&token=...`
+
+Token file: `data/agent_token.txt` (created on first visit, not web-readable).
+
+```bash
+# same loop as CLI, over HTTP
+curl -sS "https://iainreid.dev/learn/agent-api.php?action=next-topic&token=TOKEN"
+curl -sS -X POST "https://iainreid.dev/learn/agent-api.php?action=save-lesson&token=TOKEN" \
+  -H 'Content-Type: application/json' \
+  --data @lesson.json
+```
+
+Ask Cursor: open the Agent page with the token and run the next Learn topic.
+
 
 ## Layout
 
