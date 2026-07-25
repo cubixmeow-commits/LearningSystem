@@ -42,7 +42,7 @@ try {
                     'status' => 'triaged',
                 ]);
             }
-            header('Location: /?fetched=1');
+            header('Location: ' . learn_url('?fetched=1'));
             exit;
         }
 
@@ -59,7 +59,7 @@ try {
                 'one_liner' => 'Manually selected for inspection',
             ]);
             $id = (int) $result['item']['id'];
-            header('Location: /item.php?id=' . $id);
+            header('Location: ' . learn_url('item.php?id=' . $id));
             exit;
         }
 
@@ -70,7 +70,7 @@ try {
                 throw new InvalidArgumentException('Topic is required');
             }
             TopicRepository::add($pdo, $topic, 'me', $note !== '' ? $note : null);
-            header('Location: /topics.php');
+            header('Location: ' . learn_url('topics.php'));
             exit;
         }
 
@@ -115,7 +115,7 @@ try {
                 ClaimStore::upsert($pdo, $claim);
             }
             $pdo->commit();
-            header('Location: /item.php?id=' . (int) $payload['item_id']);
+            header('Location: ' . learn_url('item.php?id=' . (int) $payload['item_id']));
             exit;
         }
 
@@ -126,7 +126,7 @@ try {
     http_response_code(400);
     layout_start('Error', 'items');
     echo '<p class="flash error">' . learn_h($e->getMessage()) . '</p>';
-    echo '<p><a href="/">Back to items</a></p>';
+    echo '<p><a href="' . learn_h(learn_url()) . '">Back to items</a></p>';
     layout_end();
     exit;
 }

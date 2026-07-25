@@ -51,3 +51,42 @@ function learn_h(string $value): string
 {
     return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
+
+/**
+ * Web base path for subdirectory deploys (e.g. /learn/public).
+ * Empty string when the app is served from the domain root.
+ */
+function learn_web_base(): string
+{
+    static $base = null;
+    if ($base !== null) {
+        return $base;
+    }
+
+    $script = str_replace('\\', '/', (string) ($_SERVER['SCRIPT_NAME'] ?? ''));
+    $dir = dirname($script);
+    if ($dir === '/' || $dir === '.' || $dir === '\\') {
+        $base = '';
+        return $base;
+    }
+
+    $base = rtrim($dir, '/');
+    return $base;
+}
+
+/**
+ * Build a URL under the detected web base. Pass '' for the items home page.
+ */
+function learn_url(string $path = ''): string
+{
+    $base = learn_web_base();
+    $path = ltrim($path, '/');
+    if ($path === '') {
+        return $base === '' ? '/' : $base . '/';
+    }
+    // Query-only paths should not gain an extra slash before '?'.
+    if (str_starts_with($path, '?')) {
+        return ($base === '' ? '/' : $base . '/') . $path;
+    }
+    return ($base === '' ? '' : $base) . '/' . $path;
+}

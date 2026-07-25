@@ -33,7 +33,7 @@ layout_start('Lessons', 'lessons');
         ?>
       <li class="item-row">
         <div>
-          <h3 class="item-title"><a href="/lesson.php?file=<?= urlencode($file['file']) ?>"><?= learn_h($file['name']) ?></a></h3>
+          <h3 class="item-title"><a href="<?= learn_h(learn_url('lesson.php?file=' . rawurlencode($file['file']))) ?>"><?= learn_h($file['name']) ?></a></h3>
           <p class="one-liner"><?= $count ?> linked claim<?= $count === 1 ? '' : 's' ?></p>
         </div>
         <div class="meta">
