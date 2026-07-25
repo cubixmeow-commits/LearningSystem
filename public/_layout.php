@@ -33,6 +33,7 @@ function layout_start(string $title, string $current = 'items'): void
         <a href="<?= learn_h(learn_url('lessons.php')) ?>"<?= $current === 'lessons' ? ' aria-current="page"' : '' ?>>Lessons</a>
         <a href="<?= learn_h(learn_url('claims.php')) ?>"<?= $current === 'claims' ? ' aria-current="page"' : '' ?>>Claims</a>
         <a href="<?= learn_h(learn_url('add.php')) ?>"<?= $current === 'add' ? ' aria-current="page"' : '' ?>>Add repo</a>
+        <a href="<?= learn_h(learn_url('agent.php')) ?>"<?= $current === 'agent' ? ' aria-current="page"' : '' ?>>Agent</a>
       </nav>
     </header>
 <?php

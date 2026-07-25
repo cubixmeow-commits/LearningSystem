@@ -344,19 +344,22 @@ details.answer {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 640px) {
-  html, body { font-size: 16px; }
-  .item-row {
-    grid-template-columns: 1fr;
-  }
-  .meta {
-    align-items: flex-start;
-    text-align: left;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-  }
-  .wrap {
-    width: min(var(--max), calc(100% - 1.25rem));
-  }
+.token-box {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: var(--bg-0);
+  border: 1px solid var(--line);
+  padding: 0.55rem 0.75rem;
+  color: var(--accent);
+  word-break: break-all;
+}
+
+textarea[readonly] {
+  opacity: 0.95;
+  color: var(--ink-dim);
+}
+
+ol.dim li {
+  margin: 0.35rem 0;
 }
