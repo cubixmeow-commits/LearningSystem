@@ -1,0 +1,19 @@
+# Keep data and lessons outside the public docroot when possible.
+# If this whole tree is web-exposed on shared hosting, deny sensitive paths.
+<IfModule mod_authz_core.c>
+  <If "%{REQUEST_URI} =~ m#/(data|src|tmp|lessons)/#">
+    Require all denied
+  </If>
+</IfModule>
+
+<Files "learn.php">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+</Files>
+
+<FilesMatch "\.(sqlite|sqlite3|json)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+</FilesMatch>

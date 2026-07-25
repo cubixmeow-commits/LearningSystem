@@ -1,0 +1,11 @@
+/data/*.sqlite
+/data/*.sqlite-*
+/tmp/*
+!/tmp/.gitkeep
+.DS_Store
+node_modules/
+/test-results/
+/playwright-report/
+/screenshots/*.png
+.env
+node_modules/
