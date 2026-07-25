@@ -14,7 +14,7 @@ layout_start('Topics', 'topics');
 
 <section class="surface group">
   <h2 class="group-title">Add topic</h2>
-  <form method="post" action="/actions.php">
+  <form method="post" action="<?= learn_h(learn_url('actions.php')) ?>">
     <input type="hidden" name="action" value="add-topic">
     <label for="topic">Topic</label>
     <input id="topic" name="topic" type="text" required placeholder="SQLite WAL mode for PHP apps">
@@ -39,7 +39,7 @@ layout_start('Topics', 'topics');
               <h3 class="item-title"><?= learn_h((string) $topic['topic']) ?></h3>
               <p class="one-liner"><?= learn_h((string) ($topic['source_note'] ?? '')) ?></p>
               <?php if (!empty($topic['lesson_file'])): ?>
-                <p class="dim"><a href="/lesson.php?file=<?= urlencode((string) $topic['lesson_file']) ?>"><?= learn_h((string) $topic['lesson_file']) ?></a></p>
+                <p class="dim"><a href="<?= learn_h(learn_url('lesson.php?file=' . rawurlencode((string) $topic['lesson_file']))) ?>"><?= learn_h((string) $topic['lesson_file']) ?></a></p>
               <?php endif; ?>
             </div>
             <div class="meta">

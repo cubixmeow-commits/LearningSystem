@@ -32,7 +32,7 @@ layout_start('Claims', 'claims');
 <p class="lede">Queryable claim store. High-stakes planning should read confirmed claims only. Broad synthesis may read everything, but never treat low-confidence or synthesis claims as settled fact.</p>
 
 <section class="surface group">
-  <form method="get" action="/claims.php">
+  <form method="get" action="<?= learn_h(learn_url('claims.php')) ?>">
     <label for="category">Category</label>
     <input id="category" name="category" type="text" value="<?= learn_h($category) ?>" placeholder="dx">
     <label for="confidence">Confidence</label>
@@ -58,7 +58,7 @@ layout_start('Claims', 'claims');
           · <?= learn_h((string) $claim['claim_type']) ?>
           · <?= learn_h((string) $claim['status']) ?>
           <?php if (!empty($claim['item_id'])): ?> · item #<?= (int) $claim['item_id'] ?><?php endif; ?>
-          <?php if (!empty($claim['lesson_file'])): ?> · <a href="/lesson.php?file=<?= urlencode((string) $claim['lesson_file']) ?>"><?= learn_h((string) $claim['lesson_file']) ?></a><?php endif; ?>
+          <?php if (!empty($claim['lesson_file'])): ?> · <a href="<?= learn_h(learn_url('lesson.php?file=' . rawurlencode((string) $claim['lesson_file']))) ?>"><?= learn_h((string) $claim['lesson_file']) ?></a><?php endif; ?>
           · <a href="<?= learn_h((string) $claim['source_url']) ?>">source</a>
         </p>
       </article>

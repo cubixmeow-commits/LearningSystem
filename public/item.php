@@ -85,7 +85,7 @@ layout_start((string) $item['title'], 'items');
 
 <section class="group surface" id="save-brief">
   <h2 class="group-title">Save brief JSON</h2>
-  <form method="post" action="/actions.php">
+  <form method="post" action="<?= learn_h(learn_url('actions.php')) ?>">
     <input type="hidden" name="action" value="save-brief">
     <input type="hidden" name="item_id" value="<?= (int) $item['id'] ?>">
     <label for="brief_json">JSON payload</label>

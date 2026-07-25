@@ -20,11 +20,11 @@ layout_start('Items', 'items');
 <p class="lede">Skimmable intake from GitHub rising repos and Hacker News. Newest first within each relevance band. Briefs and claims are written by the agent runtime and stored here.</p>
 
 <div class="actions">
-  <form method="post" action="/actions.php">
+  <form method="post" action="<?= learn_h(learn_url('actions.php')) ?>">
     <input type="hidden" name="action" value="fetch">
     <button class="btn" type="submit">Fetch now</button>
   </form>
-  <a class="btn btn-secondary" href="/add.php">Add repo by URL</a>
+  <a class="btn btn-secondary" href="<?= learn_h(learn_url('add.php')) ?>">Add repo by URL</a>
 </div>
 
 <?php
@@ -48,7 +48,7 @@ if ($total === 0): ?>
       <?php foreach ($rows as $item): ?>
         <li class="item-row">
           <div>
-            <h3 class="item-title"><a href="/item.php?id=<?= (int) $item['id'] ?>"><?= learn_h((string) $item['title']) ?></a></h3>
+            <h3 class="item-title"><a href="<?= learn_h(learn_url('item.php?id=' . (int) $item['id'])) ?>"><?= learn_h((string) $item['title']) ?></a></h3>
             <p class="one-liner"><?= learn_h((string) ($item['one_liner'] ?? 'Triage pending')) ?></p>
           </div>
           <div class="meta">
