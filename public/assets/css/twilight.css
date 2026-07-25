@@ -363,3 +363,20 @@ textarea[readonly] {
 ol.dim li {
   margin: 0.35rem 0;
 }
+
+@media (max-width: 640px) {
+  html, body { font-size: 16px; }
+  .item-row {
+    grid-template-columns: 1fr;
+  }
+  .meta {
+    align-items: flex-start;
+    text-align: left;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .wrap {
+    width: min(var(--max), calc(100% - 1.25rem));
+  }
+}

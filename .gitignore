@@ -1,5 +1,6 @@
 /data/*.sqlite
 /data/*.sqlite-*
+/data/agent_token.txt
 /tmp/*
 !/tmp/.gitkeep
 .DS_Store
@@ -8,5 +9,3 @@ node_modules/
 /playwright-report/
 /screenshots/*.png
 .env
-node_modules/
-data/agent_token.txt
