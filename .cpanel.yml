@@ -1,0 +1,23 @@
+---
+# cPanel Git Version Control deployment config (Namecheap)
+#
+# BEFORE FIRST DEPLOY: replace BOTH placeholders below.
+#   CPANEL_USERNAME     -> your cPanel account username
+#   DESTINATION_FOLDER -> the subfolder under public_html (for example: learn)
+#
+# Example final path:
+#   /home/jdoe/public_html/learn/
+#
+# This file deploys into a subfolder under public_html, not the account root.
+# Deletion is disabled (no --delete) so repeated deploys do not remove
+# server-only files that exist only on the host.
+deployment:
+  tasks:
+    # REPLACE CPANEL_USERNAME and DESTINATION_FOLDER before deploying.
+    - export DEPLOYPATH=/home/CPANEL_USERNAME/public_html/DESTINATION_FOLDER/
+    # Sync full repo contents into the deploy target. Preserve folders.
+    # Exclude .git and this file. Do not use --delete.
+    - /usr/bin/rsync -av --exclude='.git/' --exclude='.cpanel.yml' ./ $DEPLOYPATH
+    # Directories traversable; PHP (and other files) readable by Apache.
+    - /bin/find "$DEPLOYPATH" -type d -exec /bin/chmod 755 {} +
+    - /bin/find "$DEPLOYPATH" -type f -exec /bin/chmod 644 {} +
